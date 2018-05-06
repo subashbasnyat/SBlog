@@ -1,0 +1,16 @@
+<% include partials/header.ejs %>
+<div class="container">
+<h1>Mero Blog</h1>
+		<% blog.forEach(function(blog){ %>
+		<div class="row">
+			<div class="col-md-4 col-sm-8 col-xs-8"><img class="thumbnail" width="100%"src="<%=blog.image%>"></div>
+			<div class="col-md-8 col-sm-12 col-xs-12">
+				<div class="row"><%=blog.title%></div>
+				<div class="row"><%-blog.content.substring(0,100)%>...</div>
+				<div class="row"><a href="/blogs/<%=blog._id%>" class="btn btn-info">Read More</a></div>
+			</div>
+		</div>
+		<hr>
+		<%});%>
+</div>
+<% include partials/footer.ejs %>
