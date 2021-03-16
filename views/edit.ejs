@@ -1,4 +1,4 @@
-<% include partials/header.ejs %>
+<%- include ('partials/header'); -%>
 <form action="/blogs/<%=blog._id%>?_method=PUT" method="POST">
 <div class="container">
 	<h1>Edit Blog</h1>
@@ -19,4 +19,4 @@
 	</div>
 </div>
 </form>
-<% include partials/footer.ejs %>
+<%- include ('partials/footer'); -%>

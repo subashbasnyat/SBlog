@@ -1,7 +1,12 @@
 var express = require('express');
 var app = express();
 var mongoose = require('mongoose');
-mongoose.connect("mongodb://localhost/bloggdb");
+var updateIfCurrentPlugin = require('mongoose-update-if-current').updateIfCurrentPlugin;
+mongoose.plugin(updateIfCurrentPlugin);
+mongoose.Promise = global.Promise
+mongoose.connect("mongodb://localhost/bloggdb")
+.then(() => console.log('connection succesful'))
+.catch((err) => console.error(err));
 var bodyParser = require('body-parser');
 var methodOverride = require('method-override');
 var expressSanitizer = require('express-sanitizer');
@@ -12,6 +17,9 @@ var User = require("./models/user");
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(methodOverride("_method"));
 app.set("view engine","ejs");
+app.use(express.json());
+const cors = require('cors');
+app.use(cors())
 app.use(express.static("public"));
 app.use(expressSanitizer());
 app.use(require('express-session')({
